@@ -4,10 +4,12 @@ const api = axios.create({
   baseURL: "https://games-aibr.onrender.com/api",
 });
 
-export function getReviews(item = "/reviews") {
-  return api.get(item).then(({ data: { reviews } }) => {
-    if (reviews) {
-      return reviews;
+export function getReviews(endpoint = "/reviews") {
+  return api.get(endpoint).then(({ data }) => {
+    if (data.reviews) {
+      return data.reviews;
+    } else {
+      return data.review;
     }
   });
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { getReviews } from "../apis";
-import ReviewCard from "./ReviewCard.jsx";
+import ReviewListCard from "./ReviewListCard.jsx";
 
 const Reviews = () => {
   const [reviewList, setReviewList] = useState([]);
@@ -14,7 +14,7 @@ const Reviews = () => {
   return (
     <ul className="reviewsList">
       {reviewList.map((review) => {
-        return <ReviewCard key={review.review_id} review={review} />;
+        return <ReviewListCard key={review.review_id} review={review} />;
       })}
     </ul>
   );
