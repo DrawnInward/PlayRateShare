@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { getReviews } from "../apis";
 import ReviewCard from "./ReviewCard";
+import { useParams } from "react-router-dom";
 
 const Review = () => {
-  const location = useLocation();
-
-  const { review_id } = location.state;
+  const { reviewId } = useParams();
 
   const [review, setReview] = useState(false);
-  console.log(review_id);
+  console.log(reviewId);
   useEffect(() => {
-    getReviews(`/reviews/${review_id}`).then((reviewFromApi) => {
+    getReviews(`/reviews/${reviewId}`).then((reviewFromApi) => {
       setReview(reviewFromApi);
     });
   }, []);

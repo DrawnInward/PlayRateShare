@@ -14,7 +14,7 @@ const ReviewListCard = ({ review }) => {
   return (
     <article className="lreview-card">
       <div className="limage-container">
-        <Link to="/review" state={{ review_id }}>
+        <Link to={`/review/${review_id}`}>
           <img
             className="lreview-image"
             src={review_img_url}
