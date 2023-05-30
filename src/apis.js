@@ -11,3 +11,11 @@ export function getReviews(item = "/reviews") {
     }
   });
 }
+
+export function getComments(id) {
+  return api.get(`/reviews/${id}/comments`).then(({ data: { comments } }) => {
+    if (comments) {
+      return comments;
+    }
+  });
+}
