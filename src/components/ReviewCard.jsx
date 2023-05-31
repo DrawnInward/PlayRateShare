@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ReviewCard = ({ review }) => {
   const {
     review_id,
@@ -34,8 +36,22 @@ const ReviewCard = ({ review }) => {
 
       <div className="buttons-container">
         <button className="votes-button">votes:{votes}</button>
-        <button className="comment-button">comments:{comment_count}</button>
+        <>
+          {comment_count > 0 ? (
+            <Link
+              to={`/reviews/${review_id}/comments`}
+              state={{ body: review_body }}
+            >
+              <button className="comment-button">
+                comments:{comment_count}
+              </button>
+            </Link>
+          ) : (
+            <button className="comment-button">comments:{comment_count}</button>
+          )}
+        </>
       </div>
+      <div className="display-comments-box"></div>
     </article>
   );
 };

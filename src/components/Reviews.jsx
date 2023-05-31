@@ -3,13 +3,17 @@ import { getReviews } from "../apis";
 import ReviewListCard from "./ReviewListCard.jsx";
 
 const Reviews = () => {
-  const [reviewList, setReviewList] = useState([]);
+  const [reviewList, setReviewList] = useState(false);
 
   useEffect(() => {
     getReviews().then((reviewsFromApi) => {
       setReviewList(reviewsFromApi);
     });
   }, []);
+
+  if (!reviewList) {
+    return "...Loading";
+  }
 
   return (
     <ul className="reviewsList">
