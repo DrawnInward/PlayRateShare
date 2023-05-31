@@ -1,3 +1,6 @@
+import { patchVotes } from "../apis";
+import { useState } from "react";
+
 const ReviewCard = ({ review }) => {
   const {
     review_id,
@@ -11,6 +14,24 @@ const ReviewCard = ({ review }) => {
     review_body,
     created_at,
   } = review;
+
+  const [updatedVotes, setUpdatedVotes] = useState(votes);
+  const [err, setErr] = useState(null);
+
+  const incrementVote = (id, num) => {
+    setUpdatedVotes((currentCount) => currentCount + num);
+    setErr(null);
+    patchVotes(id, { inc_votes: num })
+      .then((review) => {
+        console.log(review);
+        return review;
+        S;
+      })
+      .catch((err) => {
+        setUpdatedVotes((currentCount) => currentCount - num);
+        setErr("We were unable to add your upvote, please try again.");
+      });
+  };
 
   return (
     <article className="review-card">
@@ -33,9 +54,26 @@ const ReviewCard = ({ review }) => {
       </div>
 
       <div className="buttons-container">
-        <button className="votes-button">votes:{votes}</button>
-        <button className="comment-button">comments:{comment_count}</button>
+        <button
+          className="lvotes-button-increment"
+          onClick={() => {
+            incrementVote(review_id, 1);
+          }}
+        >
+          Up vote
+        </button>
+        <button
+          className="votes-button-decrement"
+          onClick={() => {
+            incrementVote(review_id, -1);
+          }}
+        >
+          Down vote
+        </button>
+        <button className="votes-button">{updatedVotes}</button>
       </div>
+      {err && <p className="error-message">{err}</p>}
+      <button className="comment-button">comments:{comment_count}</button>
     </article>
   );
 };
