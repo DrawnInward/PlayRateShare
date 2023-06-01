@@ -116,7 +116,7 @@ const Review = () => {
             <button type="submit">Submit</button>
           </form>
         </Modal>
-        {error && <p>{error}</p>}
+        {error && <p>{err}</p>}
         {comments ? (
           <ul className="comments">
             {comments.map((comment) => (
