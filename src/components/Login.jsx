@@ -11,7 +11,6 @@ const Login = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(newLogin, "new login");
     getUsers().then((users) => {
       users.forEach((user) => {
         if (user.username === newLogin) {

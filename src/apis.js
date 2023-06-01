@@ -24,7 +24,6 @@ export function getComments(id) {
 
 export function getUsers() {
   return api.get("/users").then(({ data: { users } }) => {
-    console.log(users, "users");
     return users;
   });
 }
@@ -33,7 +32,6 @@ export function postComment(id, body) {
   return api
     .post(`/reviews/${id}/comments`, body)
     .then(({ data: { comment } }) => {
-      console.log(comment, "postedComment");
       return comment;
     });
 }
