@@ -29,6 +29,9 @@ const Review = () => {
 
   const handleCommentSubmit = (event) => {
     event.preventDefault();
+    if (!newComment) {
+      return;
+    }
     const temporaryDate = Date.now();
     const commentBody = {
       username: user.username,
@@ -39,26 +42,25 @@ const Review = () => {
       body: newComment,
       created_at: temporaryDate,
     };
-    setComments((currentComments) => {
-      [optimisticComment, ...currentComments];
-    });
+    setComments((currentComments) => [optimisticComment, ...currentComments]);
+    setNewComment("");
+
     postComment(review_id, commentBody)
       .then((newComment) => {
-        setComments((currentComments) => {
-          currentComments.map((comment) => {
-            comment.created_at === temporaryDate ? newComment : comment;
-          });
-        });
+        setComments((currentComments) =>
+          currentComments.map((comment) =>
+            comment.created_at === temporaryDate ? newComment : comment
+          )
+        );
         setError(false);
-        setNewComment("");
       })
       .catch((err) => {
-        setError(error);
-        setComments((currentComments) => {
+        setError(err);
+        setComments((currentComments) =>
           currentComments.filter(
             (comment) => comment.created_at !== temporaryDate
-          );
-        });
+          )
+        );
       });
   };
 
@@ -66,7 +68,7 @@ const Review = () => {
     getComments(review_id).then((comments) => {
       setComments(comments);
     });
-  }, [comments]);
+  }, []);
 
   useEffect(() => {
     getReviews(`/reviews/${review_id}`).then((reviewFromApi) => {

@@ -16,7 +16,7 @@ const Comments = () => {
       setComments(comments);
       setIsLoading(false);
     });
-  }, [setComments]);
+  }, []);
 
   if (isLoading) {
     return <p>Loading...</p>;
