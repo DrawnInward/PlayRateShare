@@ -1,5 +1,9 @@
+
 import { patchVotes } from "../apis";
 import { useState } from "react";
+
+import { Link } from "react-router-dom";
+
 
 const ReviewCard = ({ review }) => {
   const {
@@ -54,6 +58,7 @@ const ReviewCard = ({ review }) => {
       </div>
 
       <div className="buttons-container">
+
         <button
           className="lvotes-button-increment"
           onClick={() => {
@@ -74,6 +79,23 @@ const ReviewCard = ({ review }) => {
       </div>
       {err && <p className="error-message">{err}</p>}
       <button className="comment-button">comments:{comment_count}</button>
+
+          {comment_count > 0 ? (
+            <Link
+              to={`/reviews/${review_id}/comments`}
+              state={{ body: review_body }}
+            >
+              <button className="comment-button">
+                comments:{comment_count}
+              </button>
+            </Link>
+          ) : (
+            <button className="comment-button">comments:{comment_count}</button>
+          )}
+        </>
+      </div>
+      <div className="display-comments-box"></div>
+
     </article>
   );
 };

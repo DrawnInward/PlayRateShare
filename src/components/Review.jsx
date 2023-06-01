@@ -1,26 +1,49 @@
 import { useState, useEffect } from "react";
-import { getReviews } from "../apis";
+import { getComments, getReviews } from "../apis";
 import ReviewCard from "./ReviewCard";
 import { useParams } from "react-router-dom";
+import CommentCard from "./CommentCard";
 
 const Review = () => {
-  const { reviewId } = useParams();
+  const { review_id } = useParams();
 
-  const [review, setReview] = useState(false);
-  console.log(reviewId);
+  const [review, setReview] = useState({});
+  const [comments, setComments] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    getReviews(`/reviews/${reviewId}`).then((reviewFromApi) => {
+    getComments(review_id).then((comments) => {
+      setComments(comments);
+    });
+  }, [setComments]);
+
+  useEffect(() => {
+    getReviews(`/reviews/${review_id}`).then((reviewFromApi) => {
       setReview(reviewFromApi);
+      setIsLoading(false);
     });
   }, []);
 
-  console.log(review);
-
-  if (!review) {
+  if (isLoading) {
     return "Loading...";
   }
 
-  return <ReviewCard key={review.review_id} review={review} />;
+  return (
+    <>
+      <ReviewCard key={review.review_id} review={review} />
+      <div className="comments-scroller">
+        {comments ? (
+          <ul className="comments">
+            {comments.map((comment) => (
+              <CommentCard key={comment.comment_id} comment={comment} />
+            ))}
+          </ul>
+        ) : (
+          <p>Be the first to post a comment!</p>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default Review;

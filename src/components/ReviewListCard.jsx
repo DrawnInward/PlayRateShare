@@ -33,7 +33,7 @@ const ReviewListCard = ({ review }) => {
   return (
     <article className="lreview-card">
       <div className="limage-container">
-        <Link to={`/review/${review_id}`}>
+        <Link to={`/reviews/${review_id}`}>
           <img
             className="lreview-image"
             src={review_img_url}
@@ -47,6 +47,7 @@ const ReviewListCard = ({ review }) => {
         <p className="lcategory">{category}</p>
       </div>
       <div className="lbuttons-container">
+
         <button
           className="lvotes-button-increment"
           onClick={() => {
@@ -64,6 +65,7 @@ const ReviewListCard = ({ review }) => {
           Down vote
         </button>
         <button className="lvotes-button">{updatedVotes}</button>
+
       </div>
       {err && <p className="error-message">{err}</p>}
     </article>
