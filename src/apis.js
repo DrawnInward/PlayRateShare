@@ -17,12 +17,13 @@ export function getReviews(endpoint = "/reviews") {
 export function patchVotes(id, obj) {
   return api.patch(`/reviews/${id}`, obj).then(({ data }) => {
     return data.reviews;
+  });
+}
 
 export function getComments(id) {
   return api.get(`/reviews/${id}/comments`).then(({ data: { comments } }) => {
     if (comments) {
       return comments;
     }
-
   });
 }
