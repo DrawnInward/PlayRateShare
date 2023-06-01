@@ -39,6 +39,7 @@ const Review = () => {
       body: newComment,
     };
     const optimisticComment = {
+      comment_id: temporaryDate,
       author: user.username,
       body: newComment,
       created_at: temporaryDate,
@@ -102,6 +103,7 @@ const Review = () => {
           isOpen={modalIsOpen}
           onClose={closeModal}
           className="comment-modal"
+          key={"commentModal"}
         >
           <h2>Add Comment</h2>
           <form onSubmit={handleCommentSubmit}>
