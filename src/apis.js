@@ -27,3 +27,9 @@ export function getComments(id) {
     }
   });
 }
+
+export function getCategories() {
+  return api.get("/categories").then(({ data: { categories } }) => {
+    return categories;
+  });
+}

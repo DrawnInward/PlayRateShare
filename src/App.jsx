@@ -6,6 +6,7 @@ import Review from "./components/Review";
 import Nav from "./components/Nav";
 import Homepage from "./components/Home";
 import Comments from "./components/Comments";
+import Categories from "./components/Categories";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/reviews/:review_id" element={<Review />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/reviews/:review_id/comments" element={<Comments />} />
+          <Route path="/categories" element={<Categories />} />
         </Routes>
       </>
     </BrowserRouter>

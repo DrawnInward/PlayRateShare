@@ -14,6 +14,11 @@ const Nav = () => {
             Reviews
           </Link>
         </li>
+        <li>
+          <Link to="/categories" className="nav-li">
+            Categories
+          </Link>
+        </li>
       </ul>
     </nav>
   );
