@@ -7,8 +7,9 @@ import CommentCard from "./CommentCard";
 const Review = () => {
   const { review_id } = useParams();
 
-  const [review, setReview] = useState(false);
-  const [comments, setComments] = useState(false);
+  const [review, setReview] = useState({});
+  const [comments, setComments] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getComments(review_id).then((comments) => {
@@ -19,10 +20,11 @@ const Review = () => {
   useEffect(() => {
     getReviews(`/reviews/${review_id}`).then((reviewFromApi) => {
       setReview(reviewFromApi);
+      setIsLoading(false);
     });
   }, []);
 
-  if (!review) {
+  if (isLoading) {
     return "Loading...";
   }
 

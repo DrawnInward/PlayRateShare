@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import CommentCard from "./CommentCard";
 
 const Comments = () => {
-  const [comments, setComments] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const { review_id } = useParams();
   const location = useLocation();
   const body = location.state.body;
@@ -14,12 +16,13 @@ const Comments = () => {
   useEffect(() => {
     getComments(review_id).then((comments) => {
       setComments(comments);
+      setIsLoading(false);
     });
   }, [setComments]);
 
   console.log(comments);
 
-  if (!comments) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
