@@ -32,6 +32,7 @@ const Review = () => {
     if (!newComment) {
       return;
     }
+    closeModal();
     const temporaryDate = Date.now();
     const commentBody = {
       username: user.username,
