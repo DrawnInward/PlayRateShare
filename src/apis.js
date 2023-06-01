@@ -4,7 +4,6 @@ const api = axios.create({
   baseURL: "https://games-aibr.onrender.com/api",
 });
 
-
 export function getReviews(endpoint = "/reviews") {
   return api.get(endpoint).then(({ data }) => {
     if (data.reviews) {
@@ -21,4 +20,20 @@ export function getComments(id) {
       return comments;
     }
   });
+}
+
+export function getUsers() {
+  return api.get("/users").then(({ data: { users } }) => {
+    console.log(users, "users");
+    return users;
+  });
+}
+
+export function postComment(id, body) {
+  return api
+    .post(`/reviews/${id}/comments`, body)
+    .then(({ data: { comment } }) => {
+      console.log(comment, "postedComment");
+      return comment;
+    });
 }

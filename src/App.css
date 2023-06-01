@@ -6,28 +6,56 @@
 }
 
 .navbar {
-  display: inline;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(12, 12, 12);
+  padding: 10px;
 }
 
 .navbar-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  background-color: rgb(12, 12, 12);
+  display: flex;
+  align-items: center;
 }
-li {
-  float: left;
+
+.navbar-ul li {
+  margin-right: 10px;
 }
-li .nav-li {
+
+.navbar-ul li:last-child {
+  margin-right: 0;
+}
+
+.navbar-ul li a {
   display: block;
   color: rgb(235, 229, 229);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
-li .nav-li :hover {
+
+.navbar-ul li a:hover {
   background-color: #111;
+}
+
+.nav-login {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.nav-login span {
+  margin-right: 5px;
+}
+
+.nav-login img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
 }
 
 .lreview-card {
