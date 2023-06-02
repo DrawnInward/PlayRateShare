@@ -10,17 +10,13 @@ const Comments = () => {
   const { review_id } = useParams();
   const location = useLocation();
   const body = location.state.body;
-  console.log(body);
-  console.log(review_id);
 
   useEffect(() => {
     getComments(review_id).then((comments) => {
       setComments(comments);
       setIsLoading(false);
     });
-  }, [setComments]);
-
-  console.log(comments);
+  }, []);
 
   if (isLoading) {
     return <p>Loading...</p>;

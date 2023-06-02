@@ -6,21 +6,32 @@ import Review from "./components/Review";
 import Nav from "./components/Nav";
 import Homepage from "./components/Home";
 import Comments from "./components/Comments";
+import { createContext } from "react";
+import Login from "./components/Login";
+export const UserContext = createContext();
 import Categories from "./components/Categories";
 
+
 function App() {
+  const [user, setUser] = useState(null);
+
   return (
     <BrowserRouter>
-      <>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/reviews/:review_id" element={<Review />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path="/reviews/:review_id/comments" element={<Comments />} />
-          <Route path="/categories" element={<Categories />} />
-        </Routes>
-      </>
+
+      <UserContext.Provider value={{ user, setUser }}>
+        <>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/reviews/:review_id" element={<Review />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/reviews/:review_id/comments" element={<Comments />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/categories" element={<Categories />} />
+          </Routes>
+        </>
+      </UserContext.Provider>
+
     </BrowserRouter>
   );
 }
