@@ -6,7 +6,7 @@ const api = axios.create({
 
 
 export function getReviews(endpoint, query) {
-  return api.get(endpoint, { params: { category: query } }).then(({ data }) => {
+  return api.get(endpoint, query).then(({ data }) => {
 
     if (data.reviews) {
       return data.reviews;
