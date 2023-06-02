@@ -39,7 +39,7 @@ const Reviews = () => {
       setReviewList(reviewsFromApi);
       setIsLoading(false);
     });
-  }, [queryObj]);
+  }, [categoryQuery, sortByQuery, orderQuery]);
 
   if (isLoading) {
     return "...Loading";
