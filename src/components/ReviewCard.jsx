@@ -75,23 +75,16 @@ const ReviewCard = ({ review }) => {
         <button className="votes-button">{updatedVotes}</button>
       </div>
       {err && <p className="error-message">{err}</p>}
-      <button className="comment-button">comments:{comment_count}</button>
-      <div>
-        <>
-          {comment_count > 0 ? (
-            <Link
-              to={`/reviews/${review_id}/comments`}
-              state={{ body: review_body }}
-            >
-              <button className="comment-button">
-                comments:{comment_count}
-              </button>
-            </Link>
-          ) : (
-            <button className="comment-button">comments:{comment_count}</button>
-          )}
-        </>
-      </div>
+      {comment_count > 0 ? (
+        <Link
+          to={`/reviews/${review_id}/comments`}
+          state={{ body: review_body }}
+        >
+          <button className="comment-button">comments:{comment_count}</button>
+        </Link>
+      ) : (
+        <button className="comment-button">comments:{comment_count}</button>
+      )}
       <div className="display-comments-box"></div>
     </article>
   );

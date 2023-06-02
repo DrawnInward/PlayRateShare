@@ -15,7 +15,7 @@ const Review = () => {
     getComments(review_id).then((comments) => {
       setComments(comments);
     });
-  }, [setComments]);
+  }, []);
 
   useEffect(() => {
     getReviews(`/reviews/${review_id}`).then((reviewFromApi) => {
