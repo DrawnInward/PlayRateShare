@@ -4,8 +4,10 @@ const api = axios.create({
   baseURL: "https://games-aibr.onrender.com/api",
 });
 
+
 export function getReviews(endpoint, query) {
   return api.get(endpoint, { params: { category: query } }).then(({ data }) => {
+
     if (data.reviews) {
       return data.reviews;
     } else {
@@ -28,8 +30,24 @@ export function getComments(id) {
   });
 }
 
+
+export function getUsers() {
+  return api.get("/users").then(({ data: { users } }) => {
+    return users;
+  });
+}
+
+export function postComment(id, body) {
+  return api
+    .post(`/reviews/${id}/comments`, body)
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+}
+
 export function getCategories() {
   return api.get("/categories").then(({ data: { categories } }) => {
     return categories;
   });
 }
+

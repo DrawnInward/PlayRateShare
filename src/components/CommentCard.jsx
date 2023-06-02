@@ -1,4 +1,4 @@
-const CommentCard = ({ comment: { body, author, votes, created_at } }) => {
+const CommentCard = ({ comment: { body, author, votes = 0, created_at } }) => {
   return (
     <article className="comment-card">
       <div className="comment-body-container">
