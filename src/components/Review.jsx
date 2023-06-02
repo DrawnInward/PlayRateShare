@@ -18,6 +18,7 @@ const Review = () => {
   const [comments, setComments] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deletedComment, setDeletedComment] = useState({});
 
   const openModal = () => {
     user && setModalIsOpen(true);
@@ -65,6 +66,20 @@ const Review = () => {
         );
       });
   };
+
+  useEffect(() => {
+    if (error && deletedComment.comment) {
+      setComments((currentComments) => {
+        const { comment, index } = deletedComment;
+        const updatedComments = [
+          ...currentComments.slice(0, index),
+          comment,
+          ...currentComments.slice(index + 1),
+        ];
+        return updatedComments;
+      });
+    }
+  }, [error, deletedComment]);
 
   useEffect(() => {
     getComments(review_id).then((comments) => {
@@ -123,7 +138,22 @@ const Review = () => {
         {comments ? (
           <ul className="comments">
             {comments.map((comment) => (
-              <CommentCard key={comment.comment_id} comment={comment} />
+              <>
+                {deletedComment.comment &&
+                  deletedComment.comment.comment_id === comment.comment_id && (
+                    <p>Your comment could not be deleted, please try again.</p>
+                  )}
+                <CommentCard
+                  key={comment.comment_id}
+                  comment={comment}
+                  comments={comments}
+                  setComments={setComments}
+                  setError={setError}
+                  error={error}
+                  deletedComment={deletedComment}
+                  setDeletedComment={setDeletedComment}
+                />
+              </>
             ))}
           </ul>
         ) : (

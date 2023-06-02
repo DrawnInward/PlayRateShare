@@ -6,6 +6,7 @@ import CommentCard from "./CommentCard";
 const Comments = () => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(comments);
 
   const { review_id } = useParams();
   const location = useLocation();
@@ -27,7 +28,14 @@ const Comments = () => {
       <h2>{body}</h2>
       <ul className="comments">
         {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return (
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              comments={comments}
+              setComments={setComments}
+            />
+          );
         })}
       </ul>
     </>
