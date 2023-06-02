@@ -9,12 +9,15 @@ import Comments from "./components/Comments";
 import { createContext } from "react";
 import Login from "./components/Login";
 export const UserContext = createContext();
+import Categories from "./components/Categories";
+
 
 function App() {
   const [user, setUser] = useState(null);
 
   return (
     <BrowserRouter>
+
       <UserContext.Provider value={{ user, setUser }}>
         <>
           <Nav />
@@ -24,9 +27,11 @@ function App() {
             <Route path="/reviews" element={<Reviews />} />
             <Route path="/reviews/:review_id/comments" element={<Comments />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/categories" element={<Categories />} />
           </Routes>
         </>
       </UserContext.Provider>
+
     </BrowserRouter>
   );
 }

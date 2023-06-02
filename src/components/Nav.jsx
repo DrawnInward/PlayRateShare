@@ -31,6 +31,10 @@ const Nav = () => {
             ) : (
               <span>Login</span>
             )}
+
+          <Link to="/categories" className="nav-li">
+            Categories
+
           </Link>
         </li>
       </ul>
