@@ -1,9 +1,6 @@
-
 import { useContext, useState } from "react";
 
 import { patchVotes } from "../apis";
-import { useState } from "react";
-
 
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";

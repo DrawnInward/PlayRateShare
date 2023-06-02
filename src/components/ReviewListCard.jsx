@@ -21,7 +21,6 @@ const ReviewListCard = ({ review }) => {
     setErr(null);
     patchVotes(id, { inc_votes: num })
       .then((review) => {
-        console.log(review);
         return review;
       })
       .catch((err) => {
@@ -47,7 +46,6 @@ const ReviewListCard = ({ review }) => {
         <p className="lcategory">{category}</p>
       </div>
       <div className="lbuttons-container">
-
         <button
           className="lvotes-button-increment"
           onClick={() => {
@@ -65,7 +63,6 @@ const ReviewListCard = ({ review }) => {
           Down vote
         </button>
         <button className="lvotes-button">{updatedVotes}</button>
-
       </div>
       {err && <p className="error-message">{err}</p>}
     </article>

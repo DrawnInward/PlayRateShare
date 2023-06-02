@@ -1,4 +1,16 @@
-const CommentCard = ({ comment: { body, author, votes = 0, created_at } }) => {
+import { useContext } from "react";
+import { UserContext } from "../App";
+import { deleteComment } from "../apis";
+
+const CommentCard = ({
+  comment: { comment_id, body, author, votes = 0, created_at },
+}) => {
+  const { user } = useContext(UserContext);
+
+  const handleDelete = (id) => {
+    deleteComment(id);
+  };
+
   return (
     <article className="comment-card">
       <div className="comment-body-container">
@@ -11,6 +23,16 @@ const CommentCard = ({ comment: { body, author, votes = 0, created_at } }) => {
       <div className="buttons-container">
         <button className="votes-button">votes:{votes}</button>
       </div>
+      {user.username === author && (
+        <button
+          className="delete-button"
+          onClick={() => {
+            handleDelete(comment_id);
+          }}
+        >
+          Delete
+        </button>
+      )}
     </article>
   );
 };
