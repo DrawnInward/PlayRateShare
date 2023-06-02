@@ -14,7 +14,7 @@ const Reviews = () => {
       setReviewList(reviewsFromApi);
       setIsLoading(false);
     });
-  }, []);
+  }, [categoryQuery]);
 
   if (isLoading) {
     return "...Loading";

@@ -25,7 +25,6 @@ const ReviewCard = ({ review }) => {
     setErr(null);
     patchVotes(id, { inc_votes: num })
       .then((review) => {
-        console.log(review);
         return review;
         S;
       })
