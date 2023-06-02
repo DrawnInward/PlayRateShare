@@ -54,10 +54,10 @@ const Review = () => {
             comment.created_at === temporaryDate ? newComment : comment
           )
         );
-        setError(false);
+        setError("");
       })
       .catch((err) => {
-        setError(err);
+        setError("There was an error posting your comment, please try again.");
         setComments((currentComments) =>
           currentComments.filter(
             (comment) => comment.created_at !== temporaryDate
@@ -119,7 +119,7 @@ const Review = () => {
             <button type="submit">Submit</button>
           </form>
         </Modal>
-        {error && <p>{err}</p>}
+        {error && <p>{error}</p>}
         {comments ? (
           <ul className="comments">
             {comments.map((comment) => (
