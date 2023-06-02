@@ -706,4 +706,9 @@ h3 {
     font-size: 24px;
     color: #000;
   }
+
+  .modal-content button {
+    background-color: #333;
+    color: #fff;
+  }
 }
