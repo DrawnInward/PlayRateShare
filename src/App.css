@@ -621,65 +621,6 @@ h3 {
 }
 
 @media (max-width: 768px) {
-  #root {
-    max-width: 100%;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  .navbar-ul {
-    flex-direction: column;
-    margin-top: 1rem;
-  }
-
-  .navbar-ul li {
-    margin: 0.5rem 0;
-  }
-
-  .navbar-ul li a {
-    padding: 0.5rem 1rem;
-  }
-
-  .nav-login {
-    margin-top: 1rem;
-  }
-
-  .lreview-card {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .limage-container {
-    margin-right: 0;
-    margin-bottom: 1rem;
-  }
-
-  .lreview-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  .lcontent-container {
-    margin-left: 0;
-  }
-
-  .lowner {
-    margin-left: 0;
-    margin-top: 0.5rem;
-  }
-
-  .lbuttons-container {
-    justify-content: center;
-    margin-top: 1rem;
-  }
-
   .review-card {
     flex-direction: column;
     align-items: center;
@@ -688,6 +629,7 @@ h3 {
   .image-container {
     margin-right: 0;
     margin-bottom: 1rem;
+    width: 100%;
   }
 
   .review-image {
@@ -700,34 +642,33 @@ h3 {
     margin-left: 0;
   }
 
-  .body-container {
-    margin-top: 1rem;
-  }
-
   .buttons-container {
     justify-content: center;
     margin-top: 1rem;
   }
 
-  .comments-scroller {
-    max-height: 200px;
-    overflow-y: scroll;
+  .comment-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comment-body-container h3 {
+    text-align: center;
+  }
+
+  .comment-content-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comment-author,
+  .comment-created-at {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .buttons-container {
+    justify-content: center;
     margin-top: 1rem;
-  }
-
-  .modal-content {
-    width: 90%;
-    height: 70%;
-  }
-
-  .close {
-    right: 0;
-    bottom: 0;
-    font-size: 24px;
-  }
-
-  .categoryList li {
-    width: 100%;
-    margin: 10px 0;
   }
 }
