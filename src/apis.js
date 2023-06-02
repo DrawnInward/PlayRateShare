@@ -48,8 +48,8 @@ export function getCategories() {
   });
 }
 
-export function deleteComment(id) {
+export function removeComment(id) {
   return api.delete(`/comments/${id}`).then(() => {
-    console.log(deleted);
+    console.log("deleted");
   });
 }
