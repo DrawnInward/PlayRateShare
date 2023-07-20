@@ -47,36 +47,68 @@ const Reviews = () => {
 
   return (
     <>
-      <button onClick={() => setSortOrder("asc")}>Ascending</button>
-      <button onClick={() => setSortOrder("desc")}>Descending</button>
-      <div className="dropdown">
-        <button className="dropbtn" onClick={handleDropdownClick}>
-          Sort By
-        </button>
-        {isOpen && (
-          <div className="dropdown-content">
-            <ul>
-              <li>
-                <Link to="/reviews?sort_by=created_at">Date</Link>
-              </li>
-              <li>
-                <Link to="/reviews?sort_by=comment_count">Comment Count</Link>
-              </li>
-              <li>
-                <Link to="/reviews?sort_by=votes">Votes</Link>
-              </li>
-              <li>
-                <Link to="/reviews?sort_by=designer">Designer</Link>
-              </li>
-              <li>
-                <Link to="/reviews?sort_by=owner">Review Author</Link>
-              </li>
-              <li>
-                <Link to="/reviews?sort_by=category">Category</Link>
-              </li>
-            </ul>
-          </div>
-        )}
+      <div className="sorting-buttons">
+        <div className="dropdown">
+          <button className="dropbtn" onClick={handleDropdownClick}>
+            Sort By
+          </button>
+          {isOpen && (
+            <div className="dropdown-content">
+              <ul>
+                <li>
+                  <Link
+                    onClick={handleDropdownClick}
+                    to="/reviews?sort_by=created_at"
+                  >
+                    Date
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={handleDropdownClick}
+                    to="/reviews?sort_by=comment_count"
+                  >
+                    Comment Count
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={handleDropdownClick}
+                    to="/reviews?sort_by=votes"
+                  >
+                    Votes
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={handleDropdownClick}
+                    to="/reviews?sort_by=designer"
+                  >
+                    Designer
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={handleDropdownClick}
+                    to="/reviews?sort_by=owner"
+                  >
+                    Review Author
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={handleDropdownClick}
+                    to="/reviews?sort_by=category"
+                  >
+                    Category
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+        <button onClick={() => setSortOrder("asc")}>Ascending</button>
+        <button onClick={() => setSortOrder("desc")}>Descending</button>
       </div>
       <ul className="reviewsList">
         {reviewList.map((review) => {

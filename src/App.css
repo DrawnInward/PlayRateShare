@@ -1,10 +1,158 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+.navbar {
+  background-color: rgb(12, 12, 12);
+  padding: 10px;
+}
+
+.navbar-ul {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-li {
+  color: antiquewhite;
+}
+
+.nav-login {
+  margin-left: auto;
+  color: antiquewhite;
+}
+
+.nav-login img {
+  width: 50px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.sorting-buttons {
+  display: flex;
+}
+
+.dropbtn {
+  background-color: #04aa6d;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.reviewsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.list-review-card {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.5rem 1fr 1fr 1fr 1.5rem;
+
+  grid-template-areas:
+    "title title title title title"
+    ". image image owner ."
+    ". image image category ."
+    ". buttons buttons buttons .";
+  border: 3px;
+  border-style: double;
+
+  margin-inline: auto;
+  width: min(95%, 70rem);
+  padding-block: 2rem;
+}
+
+.list-title {
+  grid-area: title;
+}
+
+.list-image-container {
+  grid-area: image;
+}
+
+.list-owner {
+  grid-area: owner;
+}
+
+.list-category {
+  grid-area: category;
+}
+
+.list-buttons-container {
+  grid-area: buttons;
+}
+
+@media screen and (max-width: 1500px) {
+  .reviewsList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .list-review-card {
+    grid-template-columns: 1.5rem 1fr 1fr 1.5rem;
+    grid-template-areas:
+      "title title title title "
+      ". image image ."
+      ". image image ."
+      ". owner category ."
+      ". buttons buttons .";
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .reviewsList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .reviewsList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/*
 .dropbtn {
   background-color: #04aa6d;
   color: white;
@@ -401,3 +549,4 @@ h3 {
     color: #fff;
   }
 }
+ */

@@ -19,25 +19,24 @@ const Nav = () => {
             Reviews
           </Link>
         </li>
-        <li>
-          <Link to="/login" className="nav-login">
-            {user ? (
-              <>
-                <img
-                  src={user.avatar_url}
-                  alt={`${user.username}'s profile picture`}
-                />
-              </>
-            ) : (
-              <span>Login</span>
-            )}
-          </Link>
-        </li>
+        <li></li>
         <li>
           <Link to="/categories" className="nav-li">
             Categories
           </Link>
         </li>
+        <Link to="/login" className="nav-login">
+          {user ? (
+            <>
+              <img
+                src={user.avatar_url}
+                alt={`${user.username}'s profile picture`}
+              />
+            </>
+          ) : (
+            <span>Login</span>
+          )}
+        </Link>
       </ul>
     </nav>
   );
