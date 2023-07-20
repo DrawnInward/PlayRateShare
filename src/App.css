@@ -19,6 +19,8 @@ picture {
   gap: 1em;
   list-style: none;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-li {
@@ -118,11 +120,53 @@ picture {
   grid-area: buttons;
 }
 
+.categoryList {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-areas:
+    "str h-r h-r"
+    "p-y-l p-y-l dex"
+    "r-w d-b e-b";
+}
+
+.categoryList > * {
+  list-style: none;
+  border: 2px;
+  border-style: solid;
+  font-size: 130%;
+}
+
+.strategy {
+  grid-area: str;
+}
+
+.hidden-roles {
+  grid-area: h-r;
+}
+
+.dexterity {
+  grid-area: dex;
+}
+
+.push-your-luck {
+  grid-area: p-y-l;
+}
+
+.roll-and-write {
+  grid-area: r-w;
+}
+
+.deck-building {
+  grid-area: d-b;
+}
+
+.engine-building {
+  grid-area: e-b;
+}
+
 @media screen and (max-width: 1500px) {
   .reviewsList {
-    display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem;
   }
 
   .list-review-card {
@@ -138,17 +182,24 @@ picture {
 
 @media screen and (max-width: 1200px) {
   .reviewsList {
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
   }
 }
 
 @media screen and (max-width: 720px) {
   .reviewsList {
-    display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+  }
+
+  .categoryList {
+    grid-template-areas:
+      "str"
+      "h-r"
+      "p-y-l"
+      "dex"
+      "r-w"
+      "d-b "
+      "e-b";
   }
 }
 
