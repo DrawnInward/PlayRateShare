@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import { getComments, getReviews } from "../apis";
 import ReviewCard from "./ReviewCard";
@@ -138,10 +138,12 @@ const Review = () => {
         {comments ? (
           <ul className="comments">
             {comments.map((comment) => (
-              <>
+              <li className="comment-list">
                 {deletedComment.comment &&
                   deletedComment.comment.comment_id === comment.comment_id && (
-                    <p>Your comment could not be deleted, please try again.</p>
+                    <p key={`error-${comment.comment_id}`}>
+                      Your comment could not be deleted, please try again.
+                    </p>
                   )}
                 <CommentCard
                   key={comment.comment_id}
@@ -153,7 +155,7 @@ const Review = () => {
                   deletedComment={deletedComment}
                   setDeletedComment={setDeletedComment}
                 />
-              </>
+              </li>
             ))}
           </ul>
         ) : (

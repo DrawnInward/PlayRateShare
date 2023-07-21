@@ -4,6 +4,7 @@ import { patchVotes } from "../apis";
 
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
+import extractDate from "../utils/extractDate";
 
 const ReviewCard = ({ review }) => {
   const {
@@ -28,7 +29,6 @@ const ReviewCard = ({ review }) => {
     patchVotes(id, { inc_votes: num })
       .then((review) => {
         return review;
-        S;
       })
       .catch((err) => {
         setUpdatedVotes((currentCount) => currentCount - num);
@@ -45,12 +45,11 @@ const ReviewCard = ({ review }) => {
           alt={`provided by ${owner}`}
         />
       </div>
+      <h3 className="review-card-title">{title}</h3>
       <div className="content-container">
-        <h3>{title}</h3>
         <p className="owner">{owner}</p>
         <p className="category">{category}</p>
-        <p className="designer">{game_designer}</p>
-        <p className="created">{created_at}</p>
+        <p className="created">{extractDate(created_at)} </p>
       </div>
       <div className="body-container">
         <p>{review_body}</p>
@@ -76,7 +75,7 @@ const ReviewCard = ({ review }) => {
         <button className="votes-button">{updatedVotes}</button>
       </div>
       {err && <p className="error-message">{err}</p>}
-      {comment_count > 0 ? (
+      {/*  {comment_count > 0 ? (
         <Link
           to={`/reviews/${review_id}/comments`}
           state={{ body: review_body }}
@@ -85,7 +84,7 @@ const ReviewCard = ({ review }) => {
         </Link>
       ) : (
         <button className="comment-button">comments:{comment_count}</button>
-      )}
+      )} */}
       <div className="display-comments-box"></div>
     </article>
   );

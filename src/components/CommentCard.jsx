@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { removeComment } from "../apis";
+import extractDate from "../utils/extractDate";
 
 const CommentCard = ({
   comment: { comment_id, body, author, votes = 0, created_at },
@@ -42,9 +43,9 @@ const CommentCard = ({
         </div>
         <div className="comment-content-container">
           <p className="comment-author">{author}</p>
-          <p className="comment-created-at">{created_at}</p>
+          <p className="comment-created-at">{extractDate(created_at)}</p>
         </div>
-        <div className="buttons-container">
+        <div className="comment-buttons-container">
           <button className="votes-button">votes:{votes}</button>
         </div>
         {user && user.username === author && (

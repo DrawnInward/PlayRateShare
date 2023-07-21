@@ -164,6 +164,86 @@ picture {
   grid-area: e-b;
 }
 
+.review-card {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr 1fr 1fr 1.5rem;
+
+  grid-template-areas:
+    "title title title title title"
+    ". image image content ."
+    ". image image content ."
+    "body body body body body"
+    ". buttons buttons buttons .";
+
+  border: 3px;
+  border-style: double;
+
+  margin-inline: auto;
+  width: min(95%, 70rem);
+  padding-block: 2rem;
+
+  width: 65%;
+}
+
+.review-card-title {
+  grid-area: title;
+}
+
+.image-container {
+  grid-area: image;
+}
+.content-container {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-container {
+  grid-area: body;
+}
+.buttons-container {
+  grid-area: buttons;
+}
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5remgit ;
+}
+
+.comment-list {
+  display: grid;
+}
+
+.comment-card {
+  display: grid;
+  border: 3px;
+  border-style: double;
+  gap: 1rem;
+  grid-template-areas:
+    "comment comment comment"
+    "content . ."
+    "content . button";
+  margin-inline: auto;
+  width: min(95%, 70rem);
+  padding-block: 2rem;
+  overflow: hidden;
+  width: 40%;
+}
+
+.comment-body-container {
+  grid-area: comment;
+}
+
+.comment-content-container {
+  grid-area: content;
+}
+
+.comment-buttons-container {
+  grid-area: button;
+}
+
 @media screen and (max-width: 1500px) {
   .reviewsList {
     grid-template-columns: 1fr 1fr 1fr;
