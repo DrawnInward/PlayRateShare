@@ -19,8 +19,7 @@ const Login = () => {
   function handleSubmit(event) {
     event.preventDefault();
     authenticateUser(newLogin).then((response) => {
-      console.log(response, "response!!!");
-      setUser(response.user);
+      setUser(response);
       setNewLogin({ username: "", password: "" });
       navigate(-1);
     });

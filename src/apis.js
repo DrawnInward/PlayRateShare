@@ -34,6 +34,18 @@ export function getUsers() {
   });
 }
 
+export function getSingleUser(username) {
+  return api.get(`/users/${username}`).then(({ data: { user } }) => {
+    return user;
+  });
+}
+
+export function postUser(body) {
+  return api.post("/users", body).then(({ data: { user } }) => {
+    return user;
+  });
+}
+
 export function postComment(id, body) {
   return api
     .post(`/reviews/${id}/comments`, body)

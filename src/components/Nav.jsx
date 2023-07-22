@@ -4,7 +4,12 @@ import Login from "./Login";
 import { UserContext } from "../App";
 
 const Nav = () => {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  const handleSignOut = () => {
+    setUser(null);
+    window.localStorage.removeItem("current_user");
+  };
 
   return (
     <nav className="navbar">
@@ -19,24 +24,43 @@ const Nav = () => {
             Reviews
           </Link>
         </li>
-        <li></li>
         <li>
           <Link to="/categories" className="nav-li">
             Categories
           </Link>
         </li>
-        <Link to="/login" className="nav-login">
+        <div className="nav-login">
           {user ? (
             <>
-              <img
-                src={user.avatar_url}
-                alt={`${user.username}'s profile picture`}
-              />
+              {" "}
+              <li>
+                <Link to="/login" onClick={handleSignOut} className="nav-login">
+                  Sign out
+                </Link>
+              </li>
+              <li>
+                <img
+                  src={user.avatar_url}
+                  alt={`${user.username}'s profile picture`}
+                />
+              </li>
             </>
           ) : (
-            <span>Login</span>
+            <>
+              {" "}
+              <li>
+                <Link to={"/login"} className="nav-li">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/signUp" className="nav-li">
+                  Sign up
+                </Link>
+              </li>
+            </>
           )}
-        </Link>
+        </div>
       </ul>
     </nav>
   );
