@@ -15,7 +15,7 @@ const Login = () => {
       users.forEach((user) => {
         if (user.username === newLogin) {
           setUser(user);
-          navigate("/");
+          navigate(-1);
         }
       });
     });

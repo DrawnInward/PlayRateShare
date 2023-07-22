@@ -9,6 +9,17 @@ picture {
   display: block;
 }
 
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar {
   background-color: rgb(12, 12, 12);
   padding: 10px;
@@ -170,6 +181,7 @@ picture {
 
   grid-template-areas:
     "title title title title title"
+    ". category . . ."
     ". image image content ."
     ". image image content ."
     "body body body body body"
@@ -209,7 +221,7 @@ picture {
 .comments {
   display: flex;
   flex-direction: column;
-  gap: 1.5remgit ;
+  gap: 1.5remgit;
 }
 
 .comment-list {
@@ -280,6 +292,15 @@ picture {
       "r-w"
       "d-b "
       "e-b";
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .comment-card {
+    grid-template-areas:
+      "comment comment"
+      "content . "
+      "content button";
   }
 }
 

@@ -5,6 +5,7 @@ import { patchVotes } from "../apis";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 import extractDate from "../utils/extractDate";
+import toTitleCase from "../utils/toTitleCase";
 
 const ReviewCard = ({ review }) => {
   const {
@@ -47,8 +48,8 @@ const ReviewCard = ({ review }) => {
       </div>
       <h3 className="review-card-title">{title}</h3>
       <div className="content-container">
+        <h4 className="category">{toTitleCase(category)}</h4>
         <p className="owner">{owner}</p>
-        <p className="category">{category}</p>
         <p className="created">{extractDate(created_at)} </p>
       </div>
       <div className="body-container">

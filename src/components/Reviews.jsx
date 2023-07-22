@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { getReviews } from "../apis";
 import ReviewListCard from "./ReviewListCard.jsx";
 import { Link, useSearchParams } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Reviews = () => {
   const [reviewList, setReviewList] = useState([]);
@@ -41,12 +42,9 @@ const Reviews = () => {
     });
   }, [categoryQuery, sortByQuery, orderQuery]);
 
-  if (isLoading) {
-    return "...Loading";
-  }
-
   return (
     <>
+      <LoadingSpinner isLoading={isLoading} />
       <div className="sorting-buttons">
         <div className="dropdown">
           <button className="dropbtn" onClick={handleDropdownClick}>

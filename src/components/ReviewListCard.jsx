@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { patchVotes } from "../apis";
 import { useState } from "react";
+import toTitleCase from "../utils/toTitleCase";
 
 const ReviewListCard = ({ review }) => {
   const {
@@ -47,7 +48,7 @@ const ReviewListCard = ({ review }) => {
         Created by: <br /> {owner}
       </p>
       <p className="list-category">
-        Category: <br /> {category}
+        Category: <br /> {toTitleCase(category)}
       </p>
       <div className="list-buttons-container">
         <button

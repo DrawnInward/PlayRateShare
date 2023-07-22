@@ -7,6 +7,7 @@ import CommentCard from "./CommentCard";
 import { postComment } from "../apis";
 import { Link } from "react-router-dom";
 import Modal from "./Modal";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Review = () => {
   const { review_id } = useParams();
@@ -94,76 +95,79 @@ const Review = () => {
     });
   }, []);
 
-  if (isLoading) {
-    return "Loading...";
-  }
-
   return (
     <>
-      <ReviewCard key={review.review_id} review={review} />
-      <div className="comments-scroller">
-        <button
-          className="add-comment-button"
-          onClick={() => {
-            openModal();
-          }}
-        >
-          {user ? (
-            "Add a comment!"
-          ) : (
-            <Link to="/login">Sign in to add a comment</Link>
-          )}
-        </button>
-        <Modal
-          isOpen={modalIsOpen}
-          onClose={closeModal}
-          className="comment-modal"
-          key={"commentModal"}
-        >
-          <h2>Add Comment</h2>
-          <form onSubmit={handleCommentSubmit}>
-            <textarea
-              rows="4"
-              cols="50"
-              placeholder="Enter your comment"
-              value={newComment}
-              onChange={(event) => {
-                setNewComment(event.target.value);
+      {isLoading ? ( // If isLoading is true, display the loading spinner
+        <LoadingSpinner key={"spinner"} isLoading={isLoading} />
+      ) : (
+        // Otherwise, display the content once the data is ready
+        <>
+          <ReviewCard key={review.review_id} review={review} />
+          <div className="comments-scroller">
+            <button
+              className="add-comment-button"
+              onClick={() => {
+                openModal();
               }}
-            ></textarea>
-            <button type="submit">Submit</button>
-          </form>
-        </Modal>
-        {error && <p>{error}</p>}
-        {comments ? (
-          <ul className="comments">
-            {comments.map((comment) => (
-              <li className="comment-list">
-                {deletedComment.comment &&
-                  deletedComment.comment.comment_id === comment.comment_id && (
-                    <p key={`error-${comment.comment_id}`}>
-                      Your comment could not be deleted, please try again.
-                    </p>
-                  )}
-                <CommentCard
-                  key={comment.comment_id}
-                  comment={comment}
-                  comments={comments}
-                  setComments={setComments}
-                  setError={setError}
-                  error={error}
-                  deletedComment={deletedComment}
-                  setDeletedComment={setDeletedComment}
-                />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Be the first to post a comment!</p>
-        )}
-      </div>
+            >
+              {user ? (
+                "Add a comment!"
+              ) : (
+                <Link to="/login">Sign in to add a comment</Link>
+              )}
+            </button>
+            <Modal
+              isOpen={modalIsOpen}
+              onClose={closeModal}
+              className="comment-modal"
+              key={"commentModal"}
+            >
+              <h2>Add Comment</h2>
+              <form onSubmit={handleCommentSubmit}>
+                <textarea
+                  rows="4"
+                  cols="50"
+                  placeholder="Enter your comment"
+                  value={newComment}
+                  onChange={(event) => {
+                    setNewComment(event.target.value);
+                  }}
+                ></textarea>
+                <button type="submit">Submit</button>
+              </form>
+            </Modal>
+            {error && <p>{error}</p>}
+            {comments ? (
+              <ul className="comments">
+                {comments.map((comment) => (
+                  <li className="comment-list" key={comment.comment_id}>
+                    {deletedComment.comment &&
+                      deletedComment.comment.comment_id ===
+                        comment.comment_id && (
+                        <p key={`error-${comment.comment_id}`}>
+                          Your comment could not be deleted, please try again.
+                        </p>
+                      )}
+                    <CommentCard
+                      key={comment.comment_id}
+                      comment={comment}
+                      comments={comments}
+                      setComments={setComments}
+                      setError={setError}
+                      error={error}
+                      deletedComment={deletedComment}
+                      setDeletedComment={setDeletedComment}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Be the first to post a comment!</p>
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 };
-
 export default Review;
