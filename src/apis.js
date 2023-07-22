@@ -5,9 +5,7 @@ const api = axios.create({
 });
 
 export function getReviews(endpoint, query) {
-
   return api.get(endpoint, query).then(({ data }) => {
-
     if (data.reviews) {
       return data.reviews;
     } else {
@@ -54,4 +52,17 @@ export function removeComment(id) {
   return api.delete(`/comments/${id}`).then(() => {
     console.log("deleted");
   });
+}
+export function authenticateUser(object) {
+  console.log("Request Data:", object);
+  return api
+    .post("/users/authentication", object)
+    .then(({ data }) => {
+      console.log("Response Data:", data);
+      return data.user;
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+      throw error;
+    });
 }
