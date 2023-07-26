@@ -135,7 +135,7 @@ export default function SignUp() {
           }}
         />
         {errors.username && (
-          <span className="error text">{errors.username}</span>
+          <span className="error-text">{errors.username}</span>
         )}
 
         <label htmlFor="password">Password</label>
@@ -148,7 +148,7 @@ export default function SignUp() {
           }}
         />
         {errors.password && (
-          <span className="error text">{errors.password}</span>
+          <span className="error-text">{errors.password}</span>
         )}
 
         <label htmlFor="confirm-password">Confirm Password</label>
@@ -169,7 +169,7 @@ export default function SignUp() {
             handleChange("name", event.target.value);
           }}
         />
-        {errors.name && <span className="error text">{errors.name}</span>}
+        {errors.name && <span className="error-text">{errors.name}</span>}
         <label htmlFor="Avatar URL">Avatar URL</label>
         <input
           id="Avatar URL"
@@ -180,7 +180,7 @@ export default function SignUp() {
           }}
         />
         {errors.avatar_url && (
-          <span className="error text">{errors.avatar_url}</span>
+          <span className="error-text">{errors.avatar_url}</span>
         )}
 
         <button>Submit</button>

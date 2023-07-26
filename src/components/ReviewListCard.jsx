@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { patchVotes } from "../apis";
-import { useState } from "react";
+import { getVotes, patchVotes } from "../apis";
+import { useContext, useEffect, useState } from "react";
 import toTitleCase from "../utils/toTitleCase";
+import { UserContext } from "../App";
+import downVoteSVG from "../assets/downVote.svg";
+import upVoteSVG from "../assets/upVote.svg";
 
-const ReviewListCard = ({ review }) => {
+const ReviewListCard = ({ review, voteList, setVoteList }) => {
   const {
     review_id,
     title,
@@ -13,6 +16,8 @@ const ReviewListCard = ({ review }) => {
     comment_count,
     category,
   } = review;
+
+  const { user } = useContext(UserContext);
 
   const [updatedVotes, setUpdatedVotes] = useState(votes);
   const [err, setErr] = useState(null);
@@ -50,24 +55,26 @@ const ReviewListCard = ({ review }) => {
       <p className="list-category">
         Category: <br /> {toTitleCase(category)}
       </p>
+
       <div className="list-buttons-container">
-        <button
+        {voteList.map((vote) => {})}
+        <img
+          src={upVoteSVG}
           className="list-votes-button-increment"
+          alt="Up vote"
           onClick={() => {
             incrementVote(review_id, 1);
           }}
-        >
-          Up vote
-        </button>
-        <button
+        />
+        <button className="list-votes-counter">{updatedVotes}</button>
+        <img
+          src={downVoteSVG}
           className="list-votes-button-decrement"
+          alt="Down vote"
           onClick={() => {
             incrementVote(review_id, -1);
           }}
-        >
-          Down vote
-        </button>
-        <button className="list-votes-button">{updatedVotes}</button>
+        />
       </div>
       {err && <p className="error-message">{err}</p>}
     </article>

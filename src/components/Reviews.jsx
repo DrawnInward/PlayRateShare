@@ -1,17 +1,26 @@
 import { useEffect, useState, useContext } from "react";
-import { getReviews } from "../apis";
+import { getReviews, getVotes } from "../apis";
 import ReviewListCard from "./ReviewListCard.jsx";
 import { Link, useSearchParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
+import { UserContext } from "../App";
 
 const Reviews = () => {
   const [reviewList, setReviewList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [voteList, setVoteList] = useState(null);
   const categoryQuery = searchParams.get("category");
   const sortByQuery = searchParams.get("sort_by");
   const orderQuery = searchParams.get("order");
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user) {
+      getVotes(user.username).then((response) => setVoteList(response));
+    }
+  }, []);
 
   const queryObj = {
     params: {
@@ -110,7 +119,14 @@ const Reviews = () => {
       </div>
       <ul className="reviewsList">
         {reviewList.map((review) => {
-          return <ReviewListCard key={review.review_id} review={review} />;
+          return (
+            <ReviewListCard
+              key={review.review_id}
+              review={review}
+              voteList={voteList}
+              setVoteList={setVoteList}
+            />
+          );
         })}
       </ul>
     </>

@@ -96,6 +96,12 @@ picture {
   display: block;
 }
 
+.list-votes-button-increment,
+.list-votes-button-decrement {
+  width: 24px;
+  height: 24px;
+}
+
 .reviewsList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -109,9 +115,9 @@ picture {
 
   grid-template-areas:
     "title title title title title"
-    ". image image owner ."
-    ". image image category ."
-    ". buttons buttons buttons .";
+    ". image image image ."
+    ". image image image ."
+    ". owner category buttons .";
   border: 3px;
   border-style: double;
 
@@ -122,6 +128,11 @@ picture {
 
 .list-title {
   grid-area: title;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.75rem;
 }
 
 .list-image-container {

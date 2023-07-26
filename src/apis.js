@@ -66,15 +66,19 @@ export function removeComment(id) {
   });
 }
 export function authenticateUser(object) {
-  console.log("Request Data:", object);
   return api
     .post("/users/authentication", object)
     .then(({ data }) => {
-      console.log("Response Data:", data);
       return data.user;
     })
     .catch((error) => {
-      console.log("Error:", error);
       throw error;
     });
+}
+
+export function getVotes(username) {
+  return api.get(`/votes/${username}`).then(({ data }) => {
+    console.log(data.votes, "votes");
+    return data.votes;
+  });
 }
