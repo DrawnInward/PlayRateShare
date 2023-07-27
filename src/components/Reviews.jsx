@@ -20,7 +20,7 @@ const Reviews = () => {
     if (user) {
       getVotes(user.username).then((response) => setVoteList(response));
     }
-  }, []);
+  }, [user]);
 
   const queryObj = {
     params: {

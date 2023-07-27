@@ -14,8 +14,8 @@ export function getReviews(endpoint, query) {
   });
 }
 
-export function patchVotes(id, obj) {
-  return api.patch(`/reviews/${id}`, obj).then(({ data }) => {
+export function patchVotes(id, obj, column) {
+  return api.patch(`/${column}/${id}`, obj).then(({ data }) => {
     return data.reviews;
   });
 }
@@ -79,6 +79,18 @@ export function authenticateUser(object) {
 export function getVotes(username) {
   return api.get(`/votes/${username}`).then(({ data }) => {
     console.log(data.votes, "votes");
+    return data.votes;
+  });
+}
+
+export function postVote(body) {
+  return api.post("/votes", body).then(({ data }) => {
+    return data.votes;
+  });
+}
+
+export function patchVote(body) {
+  return api.patch("/votes", body).then(({ data }) => {
     return data.votes;
   });
 }

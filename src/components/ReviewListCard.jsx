@@ -5,6 +5,7 @@ import toTitleCase from "../utils/toTitleCase";
 import { UserContext } from "../App";
 import downVoteSVG from "../assets/downVote.svg";
 import upVoteSVG from "../assets/upVote.svg";
+import UpVote from "./UpVote";
 
 const ReviewListCard = ({ review, voteList, setVoteList }) => {
   const {
@@ -22,10 +23,12 @@ const ReviewListCard = ({ review, voteList, setVoteList }) => {
   const [updatedVotes, setUpdatedVotes] = useState(votes);
   const [err, setErr] = useState(null);
 
+  const [voteData, setVoteData] = useState({});
+
   const incrementVote = (id, num) => {
     setUpdatedVotes((currentCount) => currentCount + num);
     setErr(null);
-    patchVotes(id, { inc_votes: num })
+    patchVotes(id, { inc_votes: num }, "reviews")
       .then((review) => {
         return review;
       })
@@ -57,14 +60,10 @@ const ReviewListCard = ({ review, voteList, setVoteList }) => {
       </p>
 
       <div className="list-buttons-container">
-        {voteList.map((vote) => {})}
-        <img
-          src={upVoteSVG}
-          className="list-votes-button-increment"
-          alt="Up vote"
-          onClick={() => {
-            incrementVote(review_id, 1);
-          }}
+        <UpVote
+          voteList={voteList}
+          incrementVote={incrementVote}
+          review_id={review_id}
         />
         <button className="list-votes-counter">{updatedVotes}</button>
         <img

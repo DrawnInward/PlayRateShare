@@ -96,6 +96,16 @@ picture {
   display: block;
 }
 
+.list-buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: #04aa6d;
+  border-style: dashed;
+  grid-area: buttons;
+}
+
 .list-votes-button-increment,
 .list-votes-button-decrement {
   width: 24px;
@@ -110,14 +120,14 @@ picture {
 
 .list-review-card {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1.5rem 1fr 1fr 1fr 1.5rem;
+
+  grid-template-columns: 1.5rem 1.5rem 1fr 1fr 1fr 4rem;
 
   grid-template-areas:
-    "title title title title title"
-    ". image image image ."
-    ". image image image ."
-    ". owner category buttons .";
+    ". title title title title title"
+    ". image image image image buttons"
+    ". image image image image buttons"
+    ". . owner . category .";
   border: 3px;
   border-style: double;
 
@@ -137,6 +147,8 @@ picture {
 
 .list-image-container {
   grid-area: image;
+  border: #04aa6d;
+  border-style: dotted;
 }
 
 .list-owner {
@@ -145,10 +157,6 @@ picture {
 
 .list-category {
   grid-area: category;
-}
-
-.list-buttons-container {
-  grid-area: buttons;
 }
 
 .categoryList {
@@ -282,19 +290,24 @@ picture {
   }
 
   .list-review-card {
-    grid-template-columns: 1.5rem 1fr 1fr 1.5rem;
+    grid-template-columns: 1.5rem 1fr 1fr 1fr 1.5rem;
     grid-template-areas:
-      "title title title title "
-      ". image image ."
-      ". image image ."
-      ". owner category ."
-      ". buttons buttons .";
+      "title title title title title"
+      ". image image image ."
+      ". image image image ."
+      ". owner category buttons .";
   }
 }
 
 @media screen and (max-width: 1200px) {
   .reviewsList {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .reviewsList {
+    grid-template-columns: 1fr;
   }
 }
 
