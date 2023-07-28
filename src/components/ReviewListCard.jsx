@@ -6,8 +6,14 @@ import { UserContext } from "../App";
 import downVoteSVG from "../assets/downVote.svg";
 import upVoteSVG from "../assets/upVote.svg";
 import UpVote from "./UpVote";
+import DownVote from "./DownVote";
 
-const ReviewListCard = ({ review, voteList, setVoteList }) => {
+const ReviewListCard = ({
+  review,
+  voteList,
+  setVoteList,
+  setVoteHasOccured,
+}) => {
   const {
     review_id,
     title,
@@ -22,8 +28,6 @@ const ReviewListCard = ({ review, voteList, setVoteList }) => {
 
   const [updatedVotes, setUpdatedVotes] = useState(votes);
   const [err, setErr] = useState(null);
-
-  const [voteData, setVoteData] = useState({});
 
   const incrementVote = (id, num) => {
     setUpdatedVotes((currentCount) => currentCount + num);
@@ -64,15 +68,14 @@ const ReviewListCard = ({ review, voteList, setVoteList }) => {
           voteList={voteList}
           incrementVote={incrementVote}
           review_id={review_id}
+          setVoteHasOccured={setVoteHasOccured}
         />
         <button className="list-votes-counter">{updatedVotes}</button>
-        <img
-          src={downVoteSVG}
-          className="list-votes-button-decrement"
-          alt="Down vote"
-          onClick={() => {
-            incrementVote(review_id, -1);
-          }}
+        <DownVote
+          voteList={voteList}
+          incrementVote={incrementVote}
+          review_id={review_id}
+          setVoteHasOccured={setVoteHasOccured}
         />
       </div>
       {err && <p className="error-message">{err}</p>}

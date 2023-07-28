@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 
 import upVoteSVG from "../assets/upVote.svg";
 import GreyUpVoteSVG from "../assets/upVoteGrey.svg";
-import { postVote } from "../apis";
+import { patchVote, postVote } from "../apis";
 import { UserContext } from "../App";
-import LoadingSpinner from "./LoadingSpinner";
 
 export default function UpVote({
   voteList,
   incrementVote,
+  setVoteHasOccured,
   review_id,
   comment_id,
 }) {
@@ -21,10 +21,15 @@ export default function UpVote({
     if (voteList) {
       setFilteredVote(voteList.filter((vote) => vote.review_id === review_id));
     }
-  }, [voteList, review_id]);
+  }, [voteList, review_id, postVote, patchVote]);
+
+  console.log(filteredVote, "filteredVote");
+  console.log(voteList, "votelist");
 
   useEffect(() => {
     if (filteredVote.length > 0 && filteredVote[0].vote_direction === 1) {
+      setIsActive(false);
+    } else if (!user) {
       setIsActive(false);
     } else {
       setIsActive(true);
@@ -32,7 +37,7 @@ export default function UpVote({
   }, [filteredVote]);
 
   const onClick = () => {
-    if (!filteredVote.username) {
+    if (user) {
       let newVoteObject = {};
       if (review_id) {
         newVoteObject = {
@@ -40,27 +45,30 @@ export default function UpVote({
           review_id,
           vote_direction: 1,
         };
-        setIsActive(false);
       } else {
         newVoteObject = {
           username: user.username,
           comment_id,
           vote_direction: 1,
         };
-        setIsActive(false);
       }
-      postVote(newVoteObject).then(() => {
-        console.log("posted");
-      });
-    } else if (voteData.username) {
-      setIsActive(false);
-    }
-    if (isActive && review_id) {
-      incrementVote(review_id, 1);
-      setIsActive(false);
-    }
-    if (isActive && comment_id) {
-      incrementVote(comment_id);
+
+      if (isActive && filteredVote.length === 0) {
+        postVote(newVoteObject).then(() => {
+          incrementVote(review_id, 1);
+          console.log("posted");
+          setVoteHasOccured((currentCounter) => currentCounter + 1);
+        });
+      } else if (isActive && review_id) {
+        incrementVote(review_id, 1);
+        patchVote(newVoteObject);
+        console.log("patched!!!!");
+        setVoteHasOccured((currentCounter) => currentCounter + 1);
+      } else if (isActive && comment_id) {
+        incrementVote(comment_id);
+        patchVote(newVoteObject);
+        setVoteHasOccured((currentCounter) => currentCounter + 1);
+      }
     }
   };
 

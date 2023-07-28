@@ -11,6 +11,7 @@ const Reviews = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [voteList, setVoteList] = useState(null);
+  const [voteHasOccured, setVoteHasOccured] = useState(0);
   const categoryQuery = searchParams.get("category");
   const sortByQuery = searchParams.get("sort_by");
   const orderQuery = searchParams.get("order");
@@ -20,7 +21,7 @@ const Reviews = () => {
     if (user) {
       getVotes(user.username).then((response) => setVoteList(response));
     }
-  }, [user]);
+  }, [user, voteHasOccured]);
 
   const queryObj = {
     params: {
@@ -125,6 +126,7 @@ const Reviews = () => {
               review={review}
               voteList={voteList}
               setVoteList={setVoteList}
+              setVoteHasOccured={setVoteHasOccured}
             />
           );
         })}
